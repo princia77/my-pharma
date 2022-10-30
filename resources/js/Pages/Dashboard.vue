@@ -65,7 +65,7 @@ const showSuccessPayment = ref(false);
 
         </template>
         <div v-for="(product, key) in products">
-            <h2 class="font-bold text-xl flex items-center leading-tight flex m-6 text-blue-600/100">
+            <h2 class="font-bold text-xl flex items-center leading-tight flex m-6 text-blue-600/100 underline">
                 CATEGORY: {{ key }}
             </h2>
             <ProductItem :key="product.id" :product="product"></ProductItem>
@@ -109,8 +109,8 @@ const showSuccessPayment = ref(false);
             </div>
         </template>
         <template #content v-if="!open_order_items">
-            Your Cart is Empty!! Hurry up!
-
+            <img class="w-full rounded-l-md" src="../../img/empty-cart.webp" alt="Empty Cart">
+            <span class="ml-40 text-gray-500 text-2xl">Your Cart is Empty! Hurry Up!!</span>
         </template>
 
         <template #footer v-if="open_order_items">
@@ -129,7 +129,8 @@ const showSuccessPayment = ref(false);
             </div>
         </template>
         <template #content v-if="!paid_order_items">
-           You have no previous orders
+            <span class="ml-40 text-gray-500 text-2xl">  You have no previous orders</span>
+
 
         </template>
         <template #content v-if="paid_order_items">
