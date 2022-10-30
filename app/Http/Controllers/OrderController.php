@@ -6,6 +6,7 @@ use App\Handlers\OrderHandler;
 use App\Models\OrderItems;
 use App\Models\Product;
 use App\Models\User;
+use App\Notifications\OrderCreation;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -36,6 +37,7 @@ class OrderController extends Controller
                 $existingOpenOrder = $handler->create($request->all(), $authUser);
             }
             $handler->addOrderItems($existingOpenOrder, $product, $request->get('count'));
+            //$authUser->notify(new OrderCreation());
         } catch (Exception) {
             return redirect()->back()->withErrors([
                 'error' => 'oops, there was an error'
