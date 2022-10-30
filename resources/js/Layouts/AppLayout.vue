@@ -9,8 +9,11 @@ import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 
+
 defineProps({
     title: String,
+    order_items: Object,
+    order: Object,
 });
 
 const showingNavigationDropdown = ref(false);
@@ -50,7 +53,7 @@ const logout = () => {
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                                    Dashboard
+                                    Shop
                                 </NavLink>
                             </div>
                         </div>
@@ -60,6 +63,7 @@ const logout = () => {
                                 <!-- Teams Dropdown -->
                                 <Dropdown v-if="$page.props.jetstream.hasTeamFeatures" align="right" width="60">
                                     <template #trigger>
+
                                         <span class="inline-flex rounded-md">
                                             <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:bg-gray-50 hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition">
                                                 {{ $page.props.user.current_team.name }}
@@ -154,11 +158,6 @@ const logout = () => {
                                         <div class="block px-4 py-2 text-xs text-gray-400">
                                             Manage Account
                                         </div>
-
-                                        <DropdownLink :href="route('profile.show')">
-                                            Profile
-                                        </DropdownLink>
-
                                         <DropdownLink v-if="$page.props.jetstream.hasApiFeatures" :href="route('api-tokens.index')">
                                             API Tokens
                                         </DropdownLink>
@@ -202,6 +201,7 @@ const logout = () => {
                                 </svg>
                             </button>
                         </div>
+
                     </div>
                 </div>
 
@@ -308,4 +308,7 @@ const logout = () => {
             </main>
         </div>
     </div>
+        <!-- use the modal component, pass in the prop -->
+
+
 </template>
